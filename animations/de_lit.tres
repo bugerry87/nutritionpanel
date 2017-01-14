@@ -1,0 +1,24 @@
+[gd_resource type="Animation" format=1]
+
+[resource]
+
+resource/name = "de_lit"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("StorageAnimator/Storage:visibility/self_opacity")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 1 ), "transitions":FloatArray( 1 ), "update":0, "values":[ 0.5 ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("StorageAnimator/Freezer:visibility/self_opacity")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 1 ), "transitions":FloatArray( 1 ), "update":0, "values":[ 0.5 ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("StorageAnimator/Fridge:visibility/self_opacity")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 1 ), "transitions":FloatArray( 1 ), "update":0, "values":[ 0.5 ] }
+
