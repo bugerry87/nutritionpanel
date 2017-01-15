@@ -36,7 +36,8 @@ func check_trigger():
 	
 	if !is_ignoring_mouse():
 		var mean = Main.calc_mean_flow(self, shape) * 100
-		change += abs(mean.x + mean.y - old_mean)
+		var velo = pow(mean.x, 2) + pow(mean.y, 2)
+		change += abs(velo - old_mean)
 		if timer > 0:
 			pass
 		elif change > min_change:
@@ -48,7 +49,7 @@ func check_trigger():
 			if trigger_entered:
 				emit_signal("trigger_exit")
 				trigger_entered = false
-		old_mean = mean.x + mean.y
+		old_mean = velo
 		change *= cooldown
 	pass
 	

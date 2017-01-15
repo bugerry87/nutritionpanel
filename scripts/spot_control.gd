@@ -89,7 +89,6 @@ func spawn_labels(force = false):
 	pass
 
 func despawn_labels(force = false):
-	print("despawn")
 	if force || !hold:
 		play("despawn_spots")
 		match_label1.set_text("N/A")

@@ -95,13 +95,13 @@ margin/right = 0.0
 margin/bottom = 0.0
 script/script = ExtResource( 1 )
 __meta__ = { "_edit_lock_":true }
-cam_id = 1
+cam_id = 0
 margin = Quat( 0, 0, 0, 100 )
 mirrow = 0
 sobel_volume = 16
 sobel_kernel = 1
 lk_max = 50
-lk_quality = 0.125
+lk_quality = 0.02
 flann_quality = 0.05
 flann_db = "flannDB/"
 
@@ -363,7 +363,7 @@ next/only_unmatch = ""
 next/spawn_spots = ""
 playback/active = true
 playback/speed = 1.0
-blend_times = [ "only_match1", "only_match1", 0.9, "only_match1", "despawn_spots", 0.5, "only_match3", "only_match3", 0.9, "only_match3", "despawn_spots", 0.5, "only_unmatch", "only_unmatch", 0.9, "only_unmatch", "despawn_spots", 0.5, "spawn_spots", "only_match1", 0.5, "spawn_spots", "only_match3", 0.5, "spawn_spots", "only_unmatch", 0.5, "spawn_spots", "spawn_spots", 0.8, "spawn_spots", "despawn_spots", 0.2, "spawn_spots", "only_match2", 0.5, "spawn_labels", "spawn_labels", 0.2, "spawn_labels", "show_label_input", 0.2, "spawn_labels", "despawn_labels", 0.2, "show_label_input", "spawn_labels", 0.2, "show_label_input", "show_label_input", 0.2, "show_label_input", "despawn_labels", 0.2, "despawn_labels", "show_label_input", 0.2, "despawn_labels", "despawn_labels", 0.2, "despawn_spots", "despawn_spots", 0.5, "only_match2", "despawn_spots", 0.5, "only_match2", "only_match2", 0.9 ]
+blend_times = [ "only_match1", "only_match1", 0.9, "only_match1", "despawn_spots", 0.5, "only_match2", "only_match2", 0.9, "only_match2", "despawn_spots", 0.5, "only_match3", "only_match3", 0.9, "only_match3", "despawn_spots", 0.5, "only_unmatch", "only_unmatch", 0.9, "only_unmatch", "despawn_spots", 0.5, "spawn_spots", "only_match1", 0.5, "spawn_spots", "only_match2", 0.5, "spawn_spots", "only_match3", 0.5, "spawn_spots", "only_unmatch", 0.5, "spawn_spots", "spawn_spots", 0.8, "spawn_spots", "despawn_spots", 0.2, "despawn_spots", "despawn_spots", 0.5, "spawn_labels", "spawn_labels", 0.2, "spawn_labels", "despawn_labels", 0.2, "spawn_labels", "show_label_input", 0.2, "despawn_labels", "despawn_labels", 0.2, "despawn_labels", "show_label_input", 0.2, "show_label_input", "spawn_labels", 0.2, "show_label_input", "despawn_labels", 0.2, "show_label_input", "show_label_input", 0.2 ]
 autoplay = ""
 script/script = ExtResource( 13 )
 mouse_control = false
@@ -390,8 +390,8 @@ stretch_mode = 0
 script/script = ExtResource( 2 )
 __meta__ = { "_edit_lock_":true }
 shape = 2
-min_change = 0.35
-cooldown = 0.0
+min_change = 0.00125
+cooldown = 0.5
 timeout = 2.0
 
 [node name="MatchSpot1" type="TextureFrame" parent="SurfContainer/SurfSpotAnimator/SurfSpot"]

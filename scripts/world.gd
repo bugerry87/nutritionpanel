@@ -17,6 +17,7 @@ export (String, DIR) var flann_db = "flannDB/"
 #state
 var show_frame_pressed = false
 var show_flow_pressed = false
+var show_lk_pressed = false
 
 #functions
 
@@ -42,8 +43,15 @@ func _process(delta):
 	if Input.is_action_pressed("show_optflow"):
 		show_flow_pressed = true
 	elif show_flow_pressed:
-		Optflow.show_flow(!Optflow.is_showing())
+		Optflow.show(~Optflow.is_showing() & Optflow.SOBEL)
 		show_flow_pressed = false
+		pass
+		
+	if Input.is_action_pressed("show_lucask"):
+		show_lk_pressed = true
+	elif show_lk_pressed:
+		Optflow.show(~Optflow.is_showing() & Optflow.LUCAS_KANADE)
+		show_lk_pressed = false
 		pass
 	pass
 

@@ -83,6 +83,7 @@ func handle_error(err):
 	pass
 	
 func start_drag(node, shape):
+	has_drag = false
 	var a_width = WebCam.get_width() / node.get_viewport_rect().size.x
 	var a_height = WebCam.get_height() / node.get_viewport_rect().size.y
 	var size_x = node.get_global_transform().x.x * node.get_size().width * a_width
@@ -92,12 +93,12 @@ func start_drag(node, shape):
 	if shape == Optflow.CIRCLE:
 		var anchor = Vector2(pos_x + size_x/2, pos_y + size_y/2)
 		Optflow.new_track(shape, anchor, size_x)
-		Optflow.start(Optflow.LUKAS_KANADE)
+		Optflow.start(Optflow.LUCAS_KANADE)
 		pass
 	elif shape == Optflow.RECT:
 		var anchor = Vector2(pos_x, pos_y)
 		Optflow.new_track(shape, anchor, size_x, size_y)
-		Optflow.start(Optflow.LUKAS_KANADE)
+		Optflow.start(Optflow.LUCAS_KANADE)
 		pass
 	drag_shape["shape"] = shape
 	drag_shape["center"] = Vector2(pos_x + size_x/2, pos_y + size_y/2)
@@ -106,7 +107,7 @@ func start_drag(node, shape):
 	pass
 	
 func release_drag():
-	Optflow.pause(Optflow.LUKAS_KANADE)
+	Optflow.pause(Optflow.LUCAS_KANADE)
 	drag_shape["shape"] = 0
 	drag_shape["center"] = Vector2()
 	drag_shape["size_x"] = 0
@@ -118,19 +119,21 @@ func handle_velocities(from, to):
 	var count = 0
 	var new_pos = Vector2()
 	
+	print(from.size())
+	
 	if has_drag && from.size() == 0 && to.size() == 0:
 		has_drag = false
+		print("drag_released")
 		emit_signal("drag_released")
-		pass
+		
 	
 	if drag_shape["shape"] == Optflow.CIRCLE:
 		for p in range(from.size()):
 			if to.size() > p:
 				var length = (from[p] - drag_shape["center"]).length()
 				if length < drag_shape["size_x"]:
-					new_pos += to[p]
+					new_pos += from[p]
 					count += 1
-					has_drag = true
 					pass
 			else:
 				break
@@ -144,9 +147,8 @@ func handle_velocities(from, to):
 				elif abs(from[p].y - drag_shape["center"].y) > drag_shape["size_y"]/2:
 					pass
 				else:
-					new_pos += to[p]
+					new_pos += from[p]
 					count += 1
-					has_drag = true
 					pass
 			else:
 				break
@@ -154,9 +156,9 @@ func handle_velocities(from, to):
 		pass
 		
 	if count != 0:
+		has_drag = true
 		drag_shape["center"] = new_pos / count
 		emit_signal("drag_shape_changed")
-		pass
 	pass
 	
 func set_label(label):
